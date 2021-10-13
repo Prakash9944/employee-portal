@@ -1,0 +1,60 @@
+<!-- <p>Demo angular app started!</p> -->
+
+
+<mat-toolbar class="mat-elevation-z5" color="primary">
+  <mat-toolbar-row>
+
+    <span> <img src="../assets/1998614.png" style="width:200px; height:50px; vertical-align: bottom"> </span>
+
+    <button type= "button" aria-label="Toggle sidenav" mat-icon-button (click)="toggleNav(sidenav)">
+      <!-- <mat-icon aria-label="Side nav toggle icon" > Menu </mat-icon> -->
+      <mat-icon aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
+    </button>
+
+
+    <span class="fill-remaining-space" ></span>
+
+    <button mat-icon-button>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+      <!-- <mat-icon class="vap-icon" aria-hidden="false" aria-label="Settings icon">Settings</mat-icon> -->
+    </button>
+
+    <button mat-icon-button >
+      <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+      <!-- <mat-icon class="vap-icon" aria-hidden="false" aria-label="home icon" >Home</mat-icon> -->
+    </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav mode="side" opened class="vertical-menu">
+    <mat-nav-list style="width:200px">
+      
+      <a mat-list-item routerLink="dashboard">
+        <mat-icon>dashboard</mat-icon> &nbsp; <label>Dahboard</label>
+      </a>
+
+      <a mat-list-item routerLink="departmentlist">
+        <mat-icon>recent_actors</mat-icon> &nbsp; <label>Departments</label>
+      </a>
+
+      <a mat-list-item routerLink="employeelist">
+        <mat-icon>wc</mat-icon> &nbsp; <label>Employees</label>
+      </a>
+
+      <a mat-list-item routerLink="department">
+        <mat-icon>contact_support</mat-icon> &nbsp; <label>Test Component</label>
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p style="height:85vh">
+        <router-outlet></router-outlet>
+    </p>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

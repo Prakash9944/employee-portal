@@ -1,0 +1,85 @@
+<mat-toolbar>
+    <span>Employee Details</span>
+    <span>&nbsp; <mat-label style="color: rgb(241, 10, 184)"> {{empCode}} </mat-label></span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+
+<form [formGroup] = "_service.form" class="normal-form">
+    <mat-grid-list cols="2" rowHeight="400px">
+
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="deptid">
+                <input type="hidden" formControlName="photoimg">
+                
+                <mat-form-field>
+                    <input formControlName="empname" matInput placeholder="Employee Name" autocomplete="off">
+                    <mat-error *ngIf="_service.form.controls['empname'].errors?.required">This fields is required</mat-error>
+                </mat-form-field>
+                <!-- <br> -->
+                <mat-form-field>
+                    <input formControlName="dob" matInput [matDatepicker]="dob"  matInput placeholder="Date of Birth" autocomplete="off">
+                    <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                    <mat-datepicker #dob></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input formControlName="mob" matInput placeholder="Mobile" autocomplete="off">
+                    <mat-error *ngIf="_service.form.controls['mob'].errors?.required">This fields is required</mat-error>
+                    <mat-error *ngIf="_service.form.controls['mob'].errors?.minlength">Minimum 8 characters required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input formControlName="email" matInput placeholder="Email" autocomplete="off">
+                    <mat-error *ngIf="_service.form.controls['email'].errors?.required">This fields is required</mat-error>
+                    <mat-error *ngIf="_service.form.controls['email'].errors?.email">Email is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input formControlName="empcode" matInput placeholder="Employee Code" autocomplete="off">
+                    <mat-error *ngIf="_service.form.controls['empcode'].errors?.required">This fields is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select formControlName="deptid" placeholder="Department">
+                        <mat-option>None</mat-option>
+
+                        <ng-container *ngFor="let dt of department">
+                            <mat-option [value] = "dt.deptid"> 
+                                {{dt.deptname}}
+                            </mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <div class="controles-container">
+                    <div class="add-top-padding" title="Gender" matInput style="height: 50px">
+                        <label for="gender">Gender: </label>
+                        <mat-radio-group formControlName="gender">
+                            <mat-radio-button value="male">Male</mat-radio-button>  <mat-radio-button value="female">Female</mat-radio-button>
+                            <mat-radio-button value="other">Other</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+      <mat-toolbar>
+
+        <span class="fill-remaining-space"></span>
+        <div class="button-row">
+            <button mat-raised-button color="primary" type="submit" (click) = "onSubmit()" [disabled]= "_service.form.invalid"> Submit</button>
+            <button mat-raised-button color="warn" type="submit" (click) = "onClear()"> Clear</button>
+        </div>
+
+      </mat-toolbar>
+      
+</form>
