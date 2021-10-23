@@ -15,7 +15,9 @@
     "express": "^4.17.1",
     "mongoose": "^5.13.7",
     "mongoose-timestamp": "^0.6.0",
+    "node-fetch": "^3.0.0",
     "nodemon": "^2.0.12",
+    "request": "^2.88.2",
     "socket.io": "^4.2.0",
     "stripe": "^8.170.0"
   }

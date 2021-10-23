@@ -1,7 +1,7 @@
 var Employee = require ('../../models/employee');
 
 exports.addEmployee = function (req, res, next) {
-    console.log('req', req.body)
+
     var query = {
         employeeName: req.body.empname,
         dateOfBirth: req.body.dob,
@@ -12,13 +12,24 @@ exports.addEmployee = function (req, res, next) {
         employeeCode: req.body.empcode,
     };
 
-    Employee.create(query, function (err, result) {
-        if (err) {
-            return next(err);
-        }
+    var insertEmployee = new Promise(function (resolve, reject) {
 
-        return res.send(result);
+        Employee.create(query, function (err, result) {
+            if (err) {
+                return resolve(err);
+            }
+
+            return reject(result);
+        });
     });
+
+    insertEmployee.then(function (response) {
+        return res.send(response);
+
+    }).catch(err => {
+        return next(errr);
+
+    })
 }
 
 exports.getAllEmployee = function (req, res, next) {

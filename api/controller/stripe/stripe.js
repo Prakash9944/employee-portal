@@ -19,13 +19,21 @@ exports.createCustomer = function (req, res, next) {
 
 exports.getCustomer = function (req, res, next) {
 
-    stripe.customers.retrieve(req.params.customerId, function (err, customer) {
-        if (err) {
-            return next(err);
-        }
-
-        return res.json(customer);
+    stripe.customers.retrieve(req.params.customerId).then(function (response) {
+        console.log('response', response)
+        return res.send(response);
+    }).catch((err) => {
+        return next(err);
     });
+
+
+    // stripe.customers.retrieve(req.params.customerId, function (err, customer) {
+    //     if (err) {
+    //         return next(err);
+    //     }
+
+    //     return res.json(customer);
+    // });
 }
 
 

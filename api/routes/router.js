@@ -23,4 +23,8 @@ Router
     .post('/stripe/createToken', stripe.createToken)
     .post('/stripe/addCardToCustomer/:id', stripe.addCardToCustomer)
 
+// Fetch routes
+    .get('/department/fetch', department.externalCall)
+
+
 module.exports = Router;
